@@ -33,6 +33,29 @@
         <junit.version>4.13.2</junit.version>
     </properties>
 
+    <distributionManagement>
+        <!-- Release artifacts -->
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Releases Repository</name>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+
+        <!-- Snapshot artifacts -->
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshots Repository</name>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:https://github.com/beingbing/sample-maven-plugin.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:beingbing/sample-maven-plugin.git</developerConnection>
+        <url>https://github.com/beingbing/sample-maven-plugin</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <developers>
         <developer>
             <id>samar</id>
@@ -50,12 +73,12 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.hamcrest</groupId>-->
-<!--                    <artifactId>hamcrest</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
+            <!--            <exclusions>-->
+            <!--                <exclusion>-->
+            <!--                    <groupId>org.hamcrest</groupId>-->
+            <!--                    <artifactId>hamcrest</artifactId>-->
+            <!--                </exclusion>-->
+            <!--            </exclusions>-->
         </dependency>
     </dependencies>
 
@@ -136,6 +159,11 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.2</version>
             </plugin>
         </plugins>
     </build>
